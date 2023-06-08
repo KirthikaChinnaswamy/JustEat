@@ -1,0 +1,4 @@
+{
+  "using": "xpath",
+  "value": "//ppc-content[text()=\"Refine your search\"]"
+}
