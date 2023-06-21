@@ -38,9 +38,19 @@ exports.config = {
     // =====
     // Hooks
     // =====
-    
+    before: async function(capabilities, specs) {
+        await browser.maximizeWindow();
+    },
+
+    beforeSuite: function (suite) {
+        global.allure = allure;
+        allure.addFeature(suite.name);
+        allure.addDescription('Generating Allure Reports: '+ suite.name);
+    },
+
     beforeTest: async function (test, context) {
         await browser.url(this.baseUrl);
+        allure.addDescription('Generating Allure Reports: '+ test.title);
     },
    
     afterTest: async function(test, context, { error, result, duration, passed, retries }) {
